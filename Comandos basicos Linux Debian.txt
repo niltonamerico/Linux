@@ -1,0 +1,138 @@
+DOCUMENTAÇÃO LINUX
+
+COMANDOS UTEIS
+
+# pwd (Confirmar diretorio atual)
+# ls -[opção] (Lista arquivos e pastas) [a] ver ocultos [l]ver permissão de acesso [h] ver tamanho
+# lsb_release (Checa versão)
+# getent passwd (listas usuários cadastrados no sistema)
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+GERENCIAR ARQUIVOS E PASTAS:
+
+# rm -r [nome da pasta] (Deletar pastas) parametro “-r” força a remoção.
+# mkdir [nome da pasta] (Criar pastas)
+# cp [opções] [origem] [destino] (Copiar um arquivo)
+-b: gera cópia de segurança se o arquivo de destino já existir.
+-f : substitui arquivos existentes sem pedir confirmação.
+-i : pede permissão antes de substituir arquivos existentes.
+-l : cria um link para o arquivo de origem ao invés de copiar o arquivo.
+-r : copia arquivos e subdiretórios (recursivo).
+-u : copia apenas quando o arquivo de origem é mais novo que o arquivo de destino ou quando o arquivo de destino não existe.
+-v : lista os arquivos copiados.
+−−help : lista as opções disponíveis com o comando.
+−−version : exibe informação sobre o comando
+
+Exemplo:
+root@programadorviking:~# cp /etc/passwd /mnt/backup/
+------------------------------------------------------------------------------------------------------------------------------------------
+
+INSTALADORES E ATUALIZADORES:
+
+# apt-get install [nome do programa] (instala qualquer programa linux)
+# aptitude install [nome do programa] (instala qualquer programa)
+# update-manager (gerenciador de atualizações)
+# apt-get update (Antes de qualquer instalação)
+# apt-get upgrade (Atualiza todos os pacotes do sistema, antes use “update” )
+# apt-get autoremove (Limpa programas não mais utilizados)
+# aptitude search [nome do programa] (busca programas para instalar)
+# apt-get remove [nome do programa] (Remove só o programa)
+# apt-get remove - -purge [nome do programa] (Remoção completa incluindo configurações)
+# apt-get install - -reinstall [nome do programa] ( Reinstala um programa já instalado)
+# apt-get dist-upgrade (Atualiza versão do sistema)
+# apt-get -f install (Instala todos os arquivos dependentes de programas instalados com erro)
+# apt-get -f remove (Remove todos os pacotes com problemas)
+# apt-get autoclean (Remove pacotes antigos ou duplicados)
+# apt-get clean (Apaga todos os arquivos do cache)
+# apt-get check (Checa se há dependencias quebradas) 
+# dpkg -i [nome do pacote] ou # dpkg -i *.deb (Dentro da pasta dos arquivos)
+# dpkg - -configure -a (Verifica os arquivos pendentes de uma instalação interrompida)
+# dpkg -r [nome do pacote] (Remove pacote .deb)
+# dpkg -l (Lista pacotes instalados no computador)
+# make install (dentro da pasta dos arquivos “# ./configure” depois “# make” e “# make install”)
+# dist-upgrade (Faz uma atualização suave do sistema)
+# uname -r (Checa versão do Kernel)
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+CACHE DO APT-GET
+
+/var/cache/apt/archives/ (Lista dos pacotes baixados)
+/var/lib/apt/lists/ ( Gerado ao usar apt-get update)
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+PERMISSÕES DE PASTAS E ARQUIVOS
+
+# chmod -R [numero] [nome da pasta ou arquivo] (“-R” maiúsculo para alterar subpastas)
+
+Indicação do tipo de arquivo. Se for "d" representa um diretório, se for "-" equivale a um arquivo.
+d: diretório
+b: arquivo de bloco
+c: arquivo especial de caractere
+p: canal
+s: socket
+-: arquivo normal
+
+Fazendo associação com as letras r, w, x e o caractere -, vamos entender cada uma:
+r: significa permissão de leitura (read);
+w: significa permissão de gravação (write);
+x: significa permissão de execução (execution);
+-: significa permissão desabilitada.
+
+Conjunto de permissões:
+--- = nenhuma permissão
+r-- = permissão de leitura
+r-x = leitura e execução
+rw- = leitura e gravação
+rwx = leitura, gravação e execução
+
+000 = --- = 0 = nenhuma permissão
+001 = --x = 1 = somente permissão de execução
+010 = -w- = 2 = somente permissão de escrita
+011 = -wx = 3 = somente permissões de escrita e execução
+100 = r-- = 4 = somente permissão de leitura
+101 = r-x = 5 = somente permissões de leitura e execução
+110 = rw- = 6 = somente permissões de leitura e escrita
+111 = rwx = 7 = permissões de leitura, escrita e execução (acesso total)
+
+#chown “usuário” “nome do arquivo” (muda de dono o arquivo). -R para todas sub pastas
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+INICIAR, PARAR OU MATAR UM SERVIÇO
+
+# ps -u [nome do usuário] (Mostra id do processo)
+# xkill (Mata um processo travado em modo gráfico)
+# kill [process id] (Mata um processo através do process id)
+# kill -9 [process id] (Mata um processo sem pedir permissões)
+# pkill [nome do programa] (Mata um precesso e todos os relacionados a ele)
+# pstree [opção -a] (Mostra id do processo em arvore)
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+MANUTENÇAO
+Saúde do HD (Smartmontools).
+
+#apt-get install smartmontools
+#smartctl -t short /dev/sda (inicia checagem do hd). 
+#smartctl -t long /dev/sda (checagem mais longa).
+#smartctl -l selftest /dev/sda (abre o arquivo de relatório do teste).
+#smartctl -H /dev/sda (checa a saúde do hd).
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+CONFIGURAÇÕES DIVERSAS
+
+# df - Checar tamanho e uso do HD
+# sudo passwd root (Configurar senha root)
+
+CONFIGURAÇÃO DE REDE
+
+# /etc/network/interfaces – Edita placa de rede.
+# /etc/resolv.conf – Edita servidor DNS.
+# /sbin/route – Mostra tabela de roteamento.
+# netstat -tulp – Mostra as portas abertas.
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+CONFIGURAÇÃO DE REDE
+
+# /etc/network/interfaces – Edita placa de rede.
+# /etc/resolv.conf – Edita servidor DNS.
+# /sbin/route – Mostra tabela de roteamento.
+# netstat -tulp – Mostra as portas abertas.
