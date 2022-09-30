@@ -136,3 +136,4 @@ CONFIGURAÇÃO DE REDE
 # /etc/resolv.conf – Edita servidor DNS.
 # /sbin/route – Mostra tabela de roteamento.
 # netstat -tulp – Mostra as portas abertas.
+----------------------------------------------------------------------------------------------------------------------------------------------------
